@@ -43,18 +43,19 @@ public class MainActivity extends AppCompatActivity {
         ShowCalendar(thisMonth);
 
 
-
-
     }
-    public void ShowCalendar(PersianMonth month){
-        CalendarAdapter ca;
 
+
+    public void ShowCalendar(PersianMonth month){
+
+        CalendarAdapter ca;
         ca = new CalendarAdapter(MainActivity.this, month.getDays());
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.drawerList);
         recyclerView.setAdapter(ca);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL));
     }
+
 
     public void btn_Goto_click(View v){
         EditText txt_month = (EditText)findViewById(R.id.txt_month_goto);
