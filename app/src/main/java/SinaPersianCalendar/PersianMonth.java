@@ -15,7 +15,9 @@ public class PersianMonth {
         month = m;
         generateDays();
     }
-
+    public void setYear(int y){
+        this.year = y ;
+    }
     public void printInit() {
         System.out.println(initDate.toString());
     }

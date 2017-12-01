@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import SinaPersianCalendar.PersianDate;
@@ -36,18 +37,34 @@ public class MainActivity extends AppCompatActivity {
 //            dayButtons[i - 1] = (Button) findViewById(id);
 //        }
 
-        PersianMonth mehr = new PersianMonth(1396,7);
 
+        PersianDate today = new PersianDate() ;
+        PersianMonth thisMonth =new PersianMonth(today.getYear(),today.getMonth()) ;
+        ShowCalendar(thisMonth);
+
+
+
+
+    }
+    public void ShowCalendar(PersianMonth month){
         CalendarAdapter ca;
 
-        ca = new CalendarAdapter(MainActivity.this, mehr.getDays());
+        ca = new CalendarAdapter(MainActivity.this, month.getDays());
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.drawerList);
         recyclerView.setAdapter(ca);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL));
+    }
 
+    public void btn_Goto_click(View v){
+        EditText txt_month = (EditText)findViewById(R.id.txt_month_goto);
+        EditText txt_year = (EditText) findViewById(R.id.txt_year_goto);
 
+        int goto_month =Integer.parseInt( txt_month.getText().toString()) ;
+        int goto_year = Integer.parseInt(txt_year.getText().toString());
 
+        PersianMonth wanted_Month = new PersianMonth(goto_year,goto_month);
+        ShowCalendar(wanted_Month);
 
     }
 }
