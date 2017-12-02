@@ -4,7 +4,11 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import android.support.v7.widget.RecyclerView;
@@ -43,10 +47,16 @@ public class MainActivity extends AppCompatActivity {
         ShowCalendar(thisMonth);
 
 
+
     }
 
 
     public void ShowCalendar(PersianMonth month){
+
+        PersianDate today = new PersianDate( );
+        TextView today_date = (TextView)findViewById(R.id.txt_Today);
+        today_date.setText(today.getDate().toString());
+
 
         CalendarAdapter ca;
         ca = new CalendarAdapter(MainActivity.this, month.getDays());

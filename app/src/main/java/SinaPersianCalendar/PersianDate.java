@@ -16,6 +16,7 @@ public class PersianDate {
     public PersianDate(){
         this(Calendar.getInstance());
     }
+    //QUESTION
 
     /* constructs the object with manual values
      * IT IS ONLY USED FROM INSIDE THE CLASS 	| not true any more
@@ -40,6 +41,7 @@ public class PersianDate {
 
     // returns an instance of the current object
     public PersianDate getDate(){return this;}
+    //QUESTION : WHAT DIES THIS DO ALONE ???
 
     /*
     * setters

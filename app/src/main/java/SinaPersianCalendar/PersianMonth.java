@@ -4,7 +4,17 @@ package SinaPersianCalendar;
  * Created by sina on 10/14/17.
  */
 
+
+
 public class PersianMonth {
+
+    private PersianDate days[];			// all days of the month
+    private PersianDate initDate;		// date of the first day of the month
+    private int numberOfDays;
+    private int year;
+    private int month;
+
+
     public PersianMonth(){
         year = 1300;
         month = 1;
@@ -18,8 +28,11 @@ public class PersianMonth {
     public void setYear(int y){
         this.year = y ;
     }
+    public void setMonth(int m){
+        this.month = m ;
+    }
     public void printInit() {
-        System.out.println(initDate.toString());
+        System.out.println(this.initDate.toString());
     }
     public int getNumberOfDays() {return numberOfDays;}
     public PersianDate[] getDays() {return days;}
@@ -46,15 +59,12 @@ public class PersianMonth {
         for (int i  = 1;i<=limit;i++) {
             days[i-1] = new PersianDate(year,month,i,
                     PersianDate.findDayOfWeek(year, month, i),PersianDate.isYearLeap(year));
+            //QUESTION : I DIDNT GET THE FUNCTIONALITY OF THIS FUNCTION.PLEASE EXPLAIN LATER
 
         }
         initDate = days[0];
     }
 
-    private PersianDate days[];			// all days of the month
-    private PersianDate initDate;		// date of the first day of the month
-    private int numberOfDays;
-    private int year;
-    private int month;
+
 
 }
