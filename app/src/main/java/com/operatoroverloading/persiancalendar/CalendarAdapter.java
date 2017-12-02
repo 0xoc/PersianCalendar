@@ -1,6 +1,7 @@
 package com.operatoroverloading.persiancalendar;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,7 +70,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             rl = (RelativeLayout) itemView.findViewById(R.id.item);
-
+            Typeface tf = Typeface.createFromAsset(context.getAssets(),"mt.ttf");
+            title.setTypeface(tf);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.operatoroverloading.persiancalendar;
 
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,50 +33,41 @@ public class MainActivity extends AppCompatActivity {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
 
-        
-
-        // refrace to day buttons
-//        Button dayButtons[] = new Button[35];
-//        for (int i = 1; i <= 35; i++) {
-//            int id = getResources().getIdentifier("d" + i, "id", getPackageName());
-//            dayButtons[i - 1] = (Button) findViewById(id);
-//        }
-
 
         PersianDate today = new PersianDate() ;
         PersianMonth thisMonth =new PersianMonth(today.getYear(),today.getMonth()) ;
         ShowCalendar(thisMonth);
 
 
+        //Typeface
+        TextView day0 = (TextView) findViewById(R.id.day0text);
+        TextView day1 = (TextView) findViewById(R.id.day1text);
+        TextView day2 = (TextView) findViewById(R.id.day2text);
+        TextView day3 = (TextView) findViewById(R.id.day3text);
+        TextView day4 = (TextView) findViewById(R.id.day4text);
+        TextView day5 = (TextView) findViewById(R.id.day5text);
+        TextView day6 = (TextView) findViewById(R.id.day6text);
+        Typeface tf = Typeface.createFromAsset(getAssets(),"mt.ttf");
+        day0.setTypeface(tf);
+        day1.setTypeface(tf);
+        day2.setTypeface(tf);
+        day3.setTypeface(tf);
+        day4.setTypeface(tf);
+        day5.setTypeface(tf);
+        day6.setTypeface(tf);
+
 
     }
 
 
     public void ShowCalendar(PersianMonth month){
-
-        PersianDate today = new PersianDate( );
-        TextView today_date = (TextView)findViewById(R.id.txt_Today);
-        today_date.setText(today.getDate().toString());
-
-
+        //PersianDate today = new PersianDate( );
         CalendarAdapter ca;
         ca = new CalendarAdapter(MainActivity.this, month.getDays());
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.drawerList);
         recyclerView.setAdapter(ca);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL));
     }
 
 
-    public void btn_Goto_click(View v){
-        EditText txt_month = (EditText)findViewById(R.id.txt_month_goto);
-        EditText txt_year = (EditText) findViewById(R.id.txt_year_goto);
-
-        int goto_month =Integer.parseInt( txt_month.getText().toString()) ;
-        int goto_year = Integer.parseInt(txt_year.getText().toString());
-
-        PersianMonth wanted_Month = new PersianMonth(goto_year,goto_month);
-        ShowCalendar(wanted_Month);
-
-    }
 }
