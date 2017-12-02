@@ -3,7 +3,16 @@
     <corners
         android:radius="40dp"
         />
-    <solid
-        android:color="@color/cardview_dark_background"
+
+    <gradient
+        android:startColor="#d21a63"
+        android:endColor="#ac1054"
+        android:angle="-90"
         />
+
+    <stroke
+    android:color="#E91E63"
+    android:width="1dp"
+    />
+
 </shape>

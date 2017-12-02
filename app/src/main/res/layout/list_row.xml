@@ -5,15 +5,15 @@
     android:padding="3dp"
     android:id="@+id/item">
     <TextView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:text="1"
         android:layout_marginRight="15dp"
         android:background="@drawable/round_item"
         android:textColor="#fff"
         android:padding="5dp"
         android:textAlignment="center"
-        android:textSize="14sp"
+        android:textSize="@dimen/dateTextSize"
         android:id="@+id/title"
         />
 
