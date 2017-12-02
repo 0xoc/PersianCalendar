@@ -10,28 +10,13 @@ import java.lang.String;
 
 
 public class PersianDate {
-    // data members
-    private int year;
-    private int month;
-    private int day;
-    private int dayOfWeek;
-    private boolean isLeap;
-    private Calendar original_date;
-    // epoch date
-    private final static int epochY = 1921;
-    private final static int epochM = 3;
-    private final static int epochDay = 21;
-    private final static int jalaliEpochYear = 1300;
     // constructors
 
-
-
     // constructs the object with todays date
-    public PersianDate()
-    {
+    public PersianDate(){
         this(Calendar.getInstance());
     }
-
+    //QUESTION
 
     /* constructs the object with manual values
      * IT IS ONLY USED FROM INSIDE THE CLASS 	| not true any more
@@ -55,10 +40,64 @@ public class PersianDate {
 
 
     // returns an instance of the current object
-
+    public PersianDate getDate(){return this;}
     //QUESTION : WHAT DIES THIS DO ALONE ???
 
+    /*
+    * setters
+    * setter functions return false on failure
+    * and 1 on successful assignment
+    * */
+    public boolean setYear(int y){
+        if (!(y >= 1300 & y < 1500))
+            return false;
+        year = y;
+        return true;
+    }
+    public boolean setMonth(int m){
+        if (!(m > 0 & m <= 12))
+            return false;
+        month = m;
+        return true;
+    }
+    public boolean setDay(int d){
+        if (month <= 6){
+            if(!(d > 0 & day <= 31))
+                return false;
+            day = d;
+            return true;
+        } else if(month > 6 & month != 12) {
+            if(!(d > 0 & day <= 30))
+                return false;
+            day = d;
+            return true;
+        } else {
+            if(!isLeap){
+                if(!(d>0 & d<=29))
+                    return false;
+                day = d;
+                return true;
+            }else{
+                if(!(d>0 & d<=30))
+                    return false;
+                day = d;
+                return true;
+            }
+        }
+    }
+    public boolean setDayOfTheWeek(int dw){
+        if (!(dw >= 0 & dw <= 6))
+            return false;
+        dayOfWeek = dw;
+        return true;
+    }
 
+
+    // getters
+    public int getYear(){return year;}
+    public int getMonth(){return month;}
+    public int getDay(){return day;}
+    public int getDayOfWeek(){return dayOfWeek;}
 
     // returns a string representing the day of the week
     public String weekDayString(){
@@ -126,7 +165,6 @@ public class PersianDate {
         // Calculate days between epoch and "cal's" date
         long difSec = (cal.getTimeInMillis() - epoch.getTimeInMillis());
         int days = (int)(difSec/(1000*3600*24))+1;
-        //QUESTION
 
         /* convert days to Persian year
          * and Persian Month and Persian Day
@@ -142,7 +180,6 @@ public class PersianDate {
         return newDate;
     }
 
-    //OK
     // is a given year leap or not!
     public static boolean isYearLeap(int y){
         if(y % 4 == 0)
@@ -175,26 +212,16 @@ public class PersianDate {
 
     /*
      * the make* methods receive an amount of day
-     * and returns the year made by those days
+     * and return a * made with does days
      * */
-
-    /**
-     *
-     *in tabe miad ye teedadi rooz migire tabdielsh mikone be sal.
-     *
-     */
-
-    //OK
     private static int makeYear(int d){
         int newYear = jalaliEpochYear;
-        while(d > 365){
+        while(!(d <= 365)){
             if(newYear%4 == 0){
-                // Age sale kabise bood
-                if(d > 365){
+                if(d >= 366){
                     newYear++;
                     d -= 366;
-                }
-                else {break;}
+                } else {break;}
             } else {
                 newYear++;
                 d -= 365;
@@ -202,47 +229,34 @@ public class PersianDate {
         }
         return newYear;
     }
-    /**in tabe miad ye teedadi rooz migire baad tabdilesh mikone be sal
-     * check mikone ke sale kabise hast ya na.
-     * baaadesh miad rooz haye baghimande ro check mikone.
-     * **/
-
-    //OK
     private static int makeMonth(int d){
         boolean isLeap = (makeYear(d)%4 == 0)?true:false;
-        //sale kabise hast ya na????
         d = daysRemained(d,true);
         int month = 1;
-        // by default farz mikonim too mahe avval hastim.
-
-        while(d >= 29){
+        while(!(d < 29)){
             if(month <= 6){
                 if (d>=31){
                     month++;
                     d-=31;}
-            }
-            else if(6 < month && month < 12){
-                if (d > 30 ){
+            } else if(month != 12){
+                if (!((d-30)<=0 )){
                     month++;
                     d-=30;
                 }
-            }
-            else if (month == 12){
+            } else {
                 if(isLeap){
                     if(d==30)
                         d-=30;
                     break;
-                }
-                else if(d == 29){
+                }else if(d == 29){
                     d-=29;
                 }
             }
         }
         return month;
     }
-
     private static int makeDay(int d){
-        if(isYearLeap(makeYear(d)) == false)
+        if(!isYearLeap(makeYear(d)))
             return daysRemained(d,false) + 2;
         else
             return daysRemained(d,false) + 1;
@@ -253,14 +267,12 @@ public class PersianDate {
      * if false it makes whole months as much as possible and
      * return the remaining days
      * */
-    //OK
     private static int daysRemained(int d,boolean type){
         if(type){
             int newYear = jalaliEpochYear;
-            while(d > 365){
+            while(!(d <= 365)){
                 if(newYear%4 == 0){
-                    // age sale kabise bood
-                    if(d > 365){
+                    if(d >= 366){
                         newYear++;
                         d -= 366;
                     } else {break;}
@@ -270,35 +282,27 @@ public class PersianDate {
                 }
             }
             return d;
-        }
-        else {
+        } else {
             boolean isLeap = (makeYear(d)%4 == 0)?true:false;
             d = daysRemained(d,true);
             int month = 1;
-
-            while(d >= 29){
-
+            while(!(d < 29)){
                 if(month <= 6){
                     if (d>=31){
                         month++;
                         d-=31;}
-                }
-
-                else if( 6 < month && month < 12 ){
-                    if ( d > 30 ){
+                } else if(month != 12){
+                    if (!((d-30)<=0 )){
                         month++;
                         d-=30;
                     }
-                }
-
-                else if( month == 12) {
+                } else {
                     if(isLeap){
-                        if(d == 30)
-                            d -= 30;
+                        if(d==30)
+                            d-=30;
                         break;
-                    }
-                    else if(d == 29){
-                        d -= 29 ;
+                    }else if(d == 29){
+                        d-=29;
                     }
                 }
             }
@@ -344,63 +348,17 @@ public class PersianDate {
         return today;
     }
 
+    // data members
+    private int year;
+    private int month;
+    private int day;
+    private int dayOfWeek;
+    private boolean isLeap;
+    private Calendar original_date;
 
-
-
-    /*
-* setters
-* setter functions return false on failure
-* and 1 on successful assignment
-* */
-    public boolean setYear(int y){
-        if (!(y >= 1300 & y < 1500))
-            return false;
-        year = y;
-        return true;
-    }
-    public boolean setMonth(int m){
-        if (!(m > 0 & m <= 12))
-            return false;
-        month = m;
-        return true;
-    }
-    public boolean setDay(int d){
-        if (month <= 6){
-            if(!(d > 0 & day <= 31))
-                return false;
-            day = d;
-            return true;
-        } else if(month > 6 & month != 12) {
-            if(!(d > 0 & day <= 30))
-                return false;
-            day = d;
-            return true;
-        } else {
-            if(!isLeap){
-                if(!(d>0 & d<=29))
-                    return false;
-                day = d;
-                return true;
-            }else{
-                if(!(d>0 & d<=30))
-                    return false;
-                day = d;
-                return true;
-            }
-        }
-    }
-    public boolean setDayOfTheWeek(int dw){
-        if (!(dw >= 0 & dw <= 6))
-            return false;
-        dayOfWeek = dw;
-        return true;
-    }
-
-
-    // getters
-    public int getYear(){return year;}
-    public int getMonth(){return month;}
-    public int getDay(){return day;}
-    public int getDayOfWeek(){return dayOfWeek;}
-    public PersianDate getDate(){return this;}
+    // epoch date
+    private final static int epochY = 1921;
+    private final static int epochM = 3;
+    private final static int epochDay = 21;
+    private final static int jalaliEpochYear = 1300;
 }
