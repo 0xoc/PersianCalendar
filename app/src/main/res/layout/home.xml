@@ -10,6 +10,31 @@
         android:textSize="50sp"
         android:textColor="#d5d5d5"
         android:text="Day"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/day"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#d5d5d5"
+        android:text="18"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/day"
+        android:layout_marginTop="30dp"
+        android:id="@+id/dateNum" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="#d5d5d5"
+        android:text="Aban"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_toLeftOf="@id/dateNum"
+        android:id="@+id/month" />
 
 </RelativeLayout>
