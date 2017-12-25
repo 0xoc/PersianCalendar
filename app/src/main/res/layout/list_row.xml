@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:padding="3dp"
-    android:id="@+id/item">
+    android:id="@+id/item"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_margin="5dp">
+
     <TextView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:text="1"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/round_item"
-        android:textColor="#fff"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:textSize="@dimen/dateTextSize"
         android:id="@+id/title"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_item"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="#fff"
+        android:textSize="@dimen/dateTextSize" />
 
 </RelativeLayout>

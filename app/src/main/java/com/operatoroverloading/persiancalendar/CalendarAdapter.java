@@ -1,6 +1,7 @@
 package com.operatoroverloading.persiancalendar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,13 +15,15 @@ import SinaPersianCalendar.PersianDate;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyViewHolder>  {
     PersianDate data[];
+    private PersianDate today;
     private LayoutInflater inflater;
     private Context context;
     private String daysToPrint[];
     private int startDay;
 
-    public CalendarAdapter(Context context, PersianDate[] data) {
+    public CalendarAdapter(Context context, PersianDate[] data,PersianDate today) {
         this.context = context;
+        this.today = today;
         inflater = LayoutInflater.from(context);
         this.data = data;
         int initDay = data[0].getDayOfWeek();
@@ -52,8 +55,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        // ignore days that are not
         if(position < startDay)
             holder.title.setBackgroundColor(0);
+
+        // color out the current day
+        else if (Integer.parseInt(daysToPrint[position]) == today.getDay())
+            holder.title.setBackgroundColor(context.getResources().getColor(android.R.color.holo_orange_dark));
         holder.title.setText(daysToPrint[position]);
 
     }

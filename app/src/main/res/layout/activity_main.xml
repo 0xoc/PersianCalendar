@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/offers_myket"
+        android:src="@drawable/calendar"
         android:scaleType="centerCrop"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/drawerList"

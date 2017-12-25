@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         PersianDate today = new PersianDate() ;
-        PersianMonth thisMonth =new PersianMonth(today.getYear(),today.getMonth()) ;
-        ShowCalendar(thisMonth);
+        ShowCalendar(today);
 
 
         //Typeface
@@ -60,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void ShowCalendar(PersianMonth month){
+    public void ShowCalendar(PersianDate today){
         //PersianDate today = new PersianDate( );
         CalendarAdapter ca;
-        ca = new CalendarAdapter(MainActivity.this, month.getDays());
+        PersianMonth month =new PersianMonth(today.getYear()  ,today.getMonth()) ;
+        ca = new CalendarAdapter(MainActivity.this, month.getDays(),today);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.drawerList);
         recyclerView.setAdapter(ca);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL));
