@@ -36,13 +36,19 @@ public class MainActivity extends AppCompatActivity {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
 
-        PersianDate today = new PersianDate();
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        final PersianDate today = new PersianDate();
+        final ViewPager pager = (ViewPager) findViewById(R.id.pager);
         MonthViewAdapter adapter = new MonthViewAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         pager.setCurrentItem(today.getMonth() - 1);
 
-
+        Button gotoToday = (Button) findViewById(R.id.gotoToday);
+        gotoToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pager.setCurrentItem(today.getMonth() - 1);
+            }
+        });
         //Typeface
         TextView day0 = (TextView) findViewById(R.id.day0text);
         TextView day1 = (TextView) findViewById(R.id.day1text);

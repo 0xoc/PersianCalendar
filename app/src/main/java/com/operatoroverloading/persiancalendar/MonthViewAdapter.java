@@ -11,6 +11,7 @@ import SinaPersianCalendar.PersianDate;
  */
 
 public class MonthViewAdapter extends FragmentStatePagerAdapter{
+    private static int count = 12;
     public MonthViewAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -24,6 +25,6 @@ public class MonthViewAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public int getCount() {
-        return 12;
+        return count;
     }
 }
