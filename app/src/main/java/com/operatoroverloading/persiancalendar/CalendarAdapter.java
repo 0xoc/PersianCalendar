@@ -62,6 +62,10 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
         // color out the current day
         else if (Integer.parseInt(daysToPrint[position]) == today.getDay())
             holder.title.setBackgroundColor(context.getResources().getColor(android.R.color.holo_orange_dark));
+        else if ((position - startDay + 1) < data.length) {
+            if (data[(position - startDay + 1)].getDayOfWeek() == 7)
+                holder.title.setBackground(context.getResources().getDrawable(R.drawable.round_item_holyday));
+        }
         holder.title.setText(daysToPrint[position]);
 
     }

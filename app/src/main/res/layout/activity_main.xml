@@ -11,8 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:src="@drawable/calendar"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:id="@+id/headerImage"
+        />
+    <LinearLayout android:layout_below="@id/headerImage"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/beynabeyni"
+        android:layout_height="50dp">
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/daysOfTheWeek"
         android:id="@+id/drawerList"
         android:layout_width="392dp"
         android:layout_height="343dp"
@@ -31,6 +40,7 @@
         android:layout_alignParentBottom="true"/>
 
     <LinearLayout
+        android:layout_below="@id/beynabeyni"
         android:id="@+id/daysOfTheWeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,9 +50,7 @@
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="#ce007f"
-        android:layout_above="@id/drawerList">
-
+        android:background="#ce007f">
 
         <TextView
             android:id="@+id/day0text"
