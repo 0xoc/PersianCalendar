@@ -2,6 +2,7 @@ package com.operatoroverloading.persiancalendar;
 
 import android.graphics.Typeface;
 import android.os.Build;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -19,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import SinaPersianCalendar.PersianDate;
 import SinaPersianCalendar.PersianMonth;
 
@@ -33,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
 
-
-        PersianDate today = new PersianDate() ;
-        ShowCalendar(today);
+        PersianDate today = new PersianDate();
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        MonthViewAdapter adapter = new MonthViewAdapter(getSupportFragmentManager());
+        pager.setAdapter(adapter);
+        pager.setCurrentItem(today.getMonth() - 1);
 
 
         //Typeface
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         TextView day4 = (TextView) findViewById(R.id.day4text);
         TextView day5 = (TextView) findViewById(R.id.day5text);
         TextView day6 = (TextView) findViewById(R.id.day6text);
+
         Typeface tf = Typeface.createFromAsset(getAssets(),"mt.ttf");
         day0.setTypeface(tf);
         day1.setTypeface(tf);
@@ -54,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         day4.setTypeface(tf);
         day5.setTypeface(tf);
         day6.setTypeface(tf);
+
 
 
     }

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.operatoroverloading.persiancalendar.MainActivity">
+    tools:context="com.operatoroverloading.persiancalendar.MainActivity"
+    android:background="#212121">
 
 
     <ImageView
@@ -14,123 +15,103 @@
         android:scaleType="centerCrop"
         android:id="@+id/headerImage"
         />
-    <LinearLayout android:layout_below="@id/headerImage"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/beynabeyni"
-        android:layout_height="50dp">
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/daysOfTheWeek"
-        android:id="@+id/drawerList"
-        android:layout_width="392dp"
-        android:layout_height="343dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-9dp"
-        android:layout_alignParentBottom="true"/>
 
     <LinearLayout
-        android:layout_below="@id/beynabeyni"
         android:id="@+id/daysOfTheWeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="15dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="#ce007f">
+        android:layout_below="@id/headerImage"
+        android:background="@color/colorAccent"
+        android:minHeight="50dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/day0text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="شنبه"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/textSize"/>
+            android:textSize="@dimen/textSize" />
 
         <TextView
             android:id="@+id/day1text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+
+            android:gravity="center"
             android:text="یک شنبه"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/textSize"/>
+            android:textSize="@dimen/textSize" />
 
         <TextView
             android:id="@+id/day2text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="دوشنبه"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/textSize"/>
+            android:textSize="@dimen/textSize" />
 
         <TextView
             android:id="@+id/day3text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="سه شنبه"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/textSize"/>
+            android:textSize="@dimen/textSize" />
 
         <TextView
             android:id="@+id/day4text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1.4"
+            android:gravity="center"
             android:text="چهار شنبه"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/textSize"/>
+            android:textSize="@dimen/textSize" />
 
         <TextView
             android:id="@+id/day5text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="پنج شنبه"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/textSize"/>
+            android:textSize="@dimen/textSize" />
 
         <TextView
             android:id="@+id/day6text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="جمعه"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/textSize"/>
+            android:textSize="@dimen/textSize" />
 
     </LinearLayout>
 
 
-    <View
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#d4d4d4"
-        android:layout_above="@id/drawerList"
-        android:layout_marginTop="5dp"
-        />
-
+        android:layout_height="wrap_content"
+        android:id="@+id/pager"
+        android:layout_below="@id/daysOfTheWeek"
+        android:padding="0dp"
+        >
+    </android.support.v4.view.ViewPager>
 </RelativeLayout>

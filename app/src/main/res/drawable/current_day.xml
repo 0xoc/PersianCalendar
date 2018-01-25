@@ -5,6 +5,7 @@
         />
 
     <solid
-        android:color="#454545"
+        android:color="@color/colorAccent"
         />
+
 </shape>

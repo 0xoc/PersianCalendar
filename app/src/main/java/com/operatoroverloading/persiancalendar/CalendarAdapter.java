@@ -2,6 +2,7 @@ package com.operatoroverloading.persiancalendar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import SinaPersianCalendar.PersianDate;
+
+import static android.R.color.holo_blue_bright;
 
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyViewHolder>  {
@@ -56,12 +59,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // ignore days that are not
-        if(position < startDay)
+        if(position < startDay) {
             holder.title.setBackgroundColor(0);
-
+        }
         // color out the current day
-        else if (Integer.parseInt(daysToPrint[position]) == today.getDay())
-            holder.title.setBackgroundColor(context.getResources().getColor(android.R.color.holo_orange_dark));
+        else if (Integer.parseInt(daysToPrint[position]) == today.getDay() & data[0].getMonth() == today.getMonth() &  data[0].getYear() == today.getYear())
+            holder.title.setBackground(context.getResources().getDrawable(R.drawable.current_day));
         else if ((position - startDay + 1) < data.length) {
             if (data[(position - startDay + 1)].getDayOfWeek() == 7)
                 holder.title.setBackground(context.getResources().getDrawable(R.drawable.round_item_holyday));
@@ -72,7 +75,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return daysToPrint.length;
+        return data.length + startDay;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

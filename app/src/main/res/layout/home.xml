@@ -104,13 +104,13 @@
         android:layout_alignEnd="@+id/events" />
 
     <Button
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
         android:background="#b362ff"
-        android:textColor="#fff"
         android:gravity="center"
         android:text="calendar"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/calendar"/>
+        android:textColor="#fff" />
 
 </RelativeLayout>
