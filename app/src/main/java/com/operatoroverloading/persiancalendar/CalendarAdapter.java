@@ -70,7 +70,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
                 holder.title.setBackground(context.getResources().getDrawable(R.drawable.round_item_holyday));
         }
         holder.title.setText(daysToPrint[position]);
-
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,DayView.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
