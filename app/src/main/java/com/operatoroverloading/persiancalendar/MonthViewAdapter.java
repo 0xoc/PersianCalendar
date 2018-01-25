@@ -12,14 +12,16 @@ import SinaPersianCalendar.PersianDate;
 
 public class MonthViewAdapter extends FragmentStatePagerAdapter{
     private static int count = 12;
+    private static PersianDate today = new PersianDate();
+    public int year = 1398;
+
     public MonthViewAdapter(FragmentManager fm) {
         super(fm);
     }
-
+    public int getYear () {return this.year;}
     @Override
     public Fragment getItem(int position) {
-        PersianDate today = new PersianDate();
-        MonthViewFragment month = new MonthViewFragment(today.getYear(),position + 1,PersianDate.monthIntToString(position));
+        MonthViewFragment month = new MonthViewFragment(year,position + 1,PersianDate.monthIntToString(position));
         return month;
     }
 

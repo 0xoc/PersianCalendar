@@ -15,10 +15,14 @@ import java.util.List;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -26,7 +30,8 @@ import SinaPersianCalendar.PersianDate;
 import SinaPersianCalendar.PersianMonth;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static MonthViewAdapter monthViewAdapter;
+    private static ViewPager pager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,20 +40,24 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
+        LayoutInflater inflater = LayoutInflater.from(this);
 
         final PersianDate today = new PersianDate();
-        final ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        MonthViewAdapter adapter = new MonthViewAdapter(getSupportFragmentManager());
-        pager.setAdapter(adapter);
+        pager = (ViewPager) findViewById(R.id.pager);
+        monthViewAdapter = new MonthViewAdapter(getSupportFragmentManager());
+        pager.setAdapter(monthViewAdapter);
         pager.setCurrentItem(today.getMonth() - 1);
 
-        Button gotoToday = (Button) findViewById(R.id.gotoToday);
+        ImageButton gotoToday = (ImageButton) findViewById(R.id.gotoToday);
         gotoToday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setYear(today.getYear());
                 pager.setCurrentItem(today.getMonth() - 1);
+
             }
         });
+
         //Typeface
         TextView day0 = (TextView) findViewById(R.id.day0text);
         TextView day1 = (TextView) findViewById(R.id.day1text);
@@ -71,7 +80,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public static void setYear (int year) {
+        monthViewAdapter.year = year;
+        pager.setAdapter(monthViewAdapter);
+    }
+    public static void nextYear () {
+        int y = monthViewAdapter.getYear();
+        setYear(y + 1);
+    }
 
+    public static void previousYear () {
+        int y = monthViewAdapter.getYear();
+        setYear(y - 1);
+    }
     public void ShowCalendar(PersianDate today){
         //PersianDate today = new PersianDate( );
         CalendarAdapter ca;

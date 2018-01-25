@@ -1,7 +1,6 @@
 package com.operatoroverloading.persiancalendar;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +9,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import SinaPersianCalendar.PersianDate;
@@ -38,8 +38,25 @@ public class MonthViewFragment extends android.support.v4.app.Fragment {
         this.v = inflater.inflate(R.layout.month_view,container,false);
         TextView monthMonth = v.findViewById(R.id.monthMonth);
         monthMonth.setText(this.monthName);
-        TextView monthYear = v.findViewById(R.id.monthY);
+        ImageButton nextYear = v.findViewById(R.id.nextYear);
 
+        nextYear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.nextYear();
+            }
+        });
+
+        ImageButton previousYear = v.findViewById(R.id.previousYear);
+
+        previousYear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.previousYear();
+            }
+        });
+
+        TextView monthYear = v.findViewById(R.id.monthY);
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),"mt.ttf");
         monthYear.setTypeface(tf);
         monthYear.setText(this.y + "");

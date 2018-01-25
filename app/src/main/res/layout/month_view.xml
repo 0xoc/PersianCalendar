@@ -13,8 +13,24 @@
             android:background="@drawable/mont_year_title"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:layoutDirection="ltr"
 
             >
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    android:id="@+id/previousYear"
+                    android:src="@drawable/previous_year"/>
+                <TextView
+                    android:textColor="#212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:id="@+id/monthY"
+                    android:text="1396"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="25sp"/>
                 <TextView
                     android:textColor="#212121"
                     android:layout_width="wrap_content"
@@ -25,16 +41,13 @@
                     android:id="@+id/monthMonth"
                     android:gravity="center"
                     android:layout_centerHorizontal="true"/>
-                <TextView
-                    android:textColor="#212121"
-                    android:layout_width="wrap_content"
+                <ImageButton
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:id="@+id/monthY"
-                    android:text="1396"
+                    android:src="@drawable/next_year"
                     android:layout_marginLeft="20dp"
-                    android:textSize="20sp"/>
-
+                    android:id="@+id/nextYear"
+                    android:background="#00000000"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
