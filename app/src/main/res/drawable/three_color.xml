@@ -4,8 +4,9 @@
         android:radius="40dp"
         />
 
-    <solid
-        android:color="#757575"
-        />
-
+    <gradient
+        android:startColor="#1251b7"
+        android:centerColor="#8905aa"
+        android:endColor="#ef32ec"
+        android:angle="45"/>
 </shape>

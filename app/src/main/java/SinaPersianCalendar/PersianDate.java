@@ -121,7 +121,11 @@ public class PersianDate {
         }
     }
     public String monthString() {
-        switch(month) {
+        return monthIntToString(month - 1);
+    }
+
+    public static String monthIntToString(int i){
+        switch(i + 1) {
             case 1:
                 return "فروردین";
             case 2:
@@ -149,6 +153,7 @@ public class PersianDate {
             default:
                 return "ماه اشتباه";
         }
+
     }
     // static utilities
 

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.operatoroverloading.persiancalendar.DayView"
+    android:layoutDirection="rtl">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_height="70dp"
+        android:background="@color/colorAccent"
+        android:id="@+id/dateText"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/txtSetupEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:shadowColor="#fff"
+            android:text="تنظیم رویداد جدید برای "
+            android:textColor="#fff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/day_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#fff"
+            android:text="DAY"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#fff"
+            android:text="/"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/day_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#fff"
+            android:text="MONTH"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#fff"
+            android:text="/"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/day_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:shadowColor="#fff"
+            android:text="year"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+
+
+
+    </LinearLayout>
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:layout_below="@id/dateText"
+       android:id="@+id/txtEventTitle"
+       android:layout_marginRight="5dp"
+       android:layout_marginLeft="5dp"
+       android:hint="عنوان رویداد"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/txtEventTitle"
+        android:hint="توضیحات رویداد"
+        android:id="@+id/txtEventDescription"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/txtEventDescription"
+        android:hint="مکان رویداد"
+        android:id="@+id/txtEventLocation"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/txtEventLocation"
+        android:id="@+id/timePickerStart"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="زمان رویداد"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:id="@+id/lableSelectTime"
+        android:layout_margin="10dp"
+        android:layout_below="@id/timePickerStart"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_below="@id/lableSelectTime"
+        android:layoutDirection="ltr"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <NumberPicker
+            android:id="@+id/timeHour"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="100dp"
+            />
+        <NumberPicker
+            android:id="@+id/timeMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/eventTypeStart"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/timePicker"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="انتخاب نوع رویداد"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:id="@+id/labelEventType"
+        android:layout_margin="10dp"
+        android:layout_below="@id/eventTypeStart"/>
+    <Spinner
+        android:id="@+id/spEventType"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/labelEventType"
+        />
+
+
+</RelativeLayout>

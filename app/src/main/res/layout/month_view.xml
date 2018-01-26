@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#212121"
+    >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:id="@+id/monthYear"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/mont_year_title"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layoutDirection="ltr"
+
+            >
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    android:id="@+id/previousYear"
+                    android:src="@drawable/previous_year"/>
+                <TextView
+                    android:textColor="#212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:id="@+id/monthY"
+                    android:text="1396"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="25sp"/>
+                <TextView
+                    android:textColor="#212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="30sp"
+                    android:layout_gravity="center"
+                    android:text="مهر"
+                    android:id="@+id/monthMonth"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"/>
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/next_year"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/nextYear"
+                    android:background="#00000000"/>
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/monthYear"
+            android:id="@+id/drawerList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
