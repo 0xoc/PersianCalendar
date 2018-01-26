@@ -12,9 +12,6 @@ import SinaPersianCalendar.PersianDate;
 
 public class Event {
     
-    String eventText = "" ;
-    PersianDate eventDate ;
-    EventType et  = EventType.NORMAL;
-    String eventTime ;
+
 
 }

@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,8 +46,38 @@ public class DayView extends AppCompatActivity {
         if (d != -1)
             day.setText(d + "");
 
-        Spinner evenyType = (Spinner) findViewById(R.id.spEventType);
-        
+        Spinner eventType = (Spinner) findViewById(R.id.spEventType);
+
+        EventType n = new EventType("تایم کلاس ها");
+        EventType a = new EventType("قرار ملاقات");
+        EventType b = new EventType("همورک");
+        final int eventCount = EventType.events.size();
+
+        String types[] = new String[eventCount + 1];
+
+        for (int i = 0; i < eventCount;i++){
+            types[i] = EventType.events.get(i).getEventTitle();
+        }
+        types[eventCount] = "اضافه کردن نوع جدید...";
+
+        eventType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int current = adapterView.getSelectedItemPosition();
+                if (current == eventCount)
+                    Toast.makeText(getApplicationContext(),"todo: add new event in dialog",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        ArrayAdapter<String> eventTypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,types);
+        eventTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        eventType.setAdapter(eventTypeAdapter);
+
+
         NumberPicker pickHour = (NumberPicker) findViewById(R.id.timeHour);
         NumberPicker pickMin = (NumberPicker) findViewById(R.id.timeMinute);
 
