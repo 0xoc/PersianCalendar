@@ -1,10 +1,13 @@
 package com.operatoroverloading.persiancalendar;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,6 +33,7 @@ public class DayView extends AppCompatActivity {
         TextView year = (TextView) findViewById(R.id.day_year);
         TextView month = (TextView) findViewById(R.id.day_month);
         TextView day = (TextView) findViewById(R.id.day_day);
+        TextView setupEvent = (TextView) findViewById(R.id.txtSetupEvent);
 
         if (y != -1)
             year.setText(y + "");
@@ -38,13 +42,25 @@ public class DayView extends AppCompatActivity {
         if (d != -1)
             day.setText(d + "");
 
+        Spinner evenyType = (Spinner) findViewById(R.id.spEventType);
+        
+        NumberPicker pickHour = (NumberPicker) findViewById(R.id.timeHour);
+        NumberPicker pickMin = (NumberPicker) findViewById(R.id.timeMinute);
 
-        for (int i = 0; i < 12;i+= 2){
-            time.add(i + "-" + (i + 2));
-        }
+        pickHour.setMaxValue(24);
+        pickHour.setMinValue(1);
 
-        ListView times = (ListView) findViewById(R.id.dayTimes);
-        DayTimesAdapter timesAdapter = new DayTimesAdapter(this,R.layout.day_time_view,time);
-        times.setAdapter(timesAdapter);
+        pickMin.setMinValue(0);
+        pickMin.setMaxValue(59);
+
+        pickHour.setWrapSelectorWheel(true);
+        pickMin.setWrapSelectorWheel(true);
+
+        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),"mt.ttf");
+        year.setTypeface(tf);
+        month.setTypeface(tf);
+        day.setTypeface(tf);
+        setupEvent.setTypeface(tf);
+
     }
 }
