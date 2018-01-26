@@ -7,14 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+
+import CalendarCore.EventCore.Event;
+import CalendarCore.EventCore.EventType;
+import SinaPersianCalendar.PersianDate;
 
 public class DayView extends AppCompatActivity {
 
@@ -46,7 +51,7 @@ public class DayView extends AppCompatActivity {
         if (d != -1)
             day.setText(d + "");
 
-        Spinner eventType = (Spinner) findViewById(R.id.spEventType);
+        final Spinner eventType = (Spinner) findViewById(R.id.spEventType);
 
         EventType n = new EventType("تایم کلاس ها");
         EventType a = new EventType("قرار ملاقات");
@@ -78,8 +83,8 @@ public class DayView extends AppCompatActivity {
         eventType.setAdapter(eventTypeAdapter);
 
 
-        NumberPicker pickHour = (NumberPicker) findViewById(R.id.timeHour);
-        NumberPicker pickMin = (NumberPicker) findViewById(R.id.timeMinute);
+        final NumberPicker pickHour = (NumberPicker) findViewById(R.id.timeHour);
+        final NumberPicker pickMin = (NumberPicker) findViewById(R.id.timeMinute);
 
         pickHour.setMaxValue(24);
         pickHour.setMinValue(1);
@@ -95,6 +100,30 @@ public class DayView extends AppCompatActivity {
         month.setTypeface(tf);
         day.setTypeface(tf);
         setupEvent.setTypeface(tf);
+        ImageButton addEventBtn = (ImageButton) findViewById(R.id.addEventBtn);
+
+
+        final PersianDate eventDate = new PersianDate(y,m,d);
+
+        addEventBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // register new event
+                TextView eventTitle = (TextView) findViewById(R.id.txtEventTitle);
+                TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);
+                TextView eventDescription = (TextView) findViewById(R.id.txtEventDescription);
+
+                int hour = pickHour.getValue();
+                int min = pickMin.getValue();
+
+                EventType type = EventType.events.get(eventType.getSelectedItemPosition());
+
+
+                Event newEvent = new Event(eventTitle.toString(),eventDescription.toString(),
+                        eventLocation.toString(),eventDate,hour,min,type);
+
+            }
+        });
 
     }
 }

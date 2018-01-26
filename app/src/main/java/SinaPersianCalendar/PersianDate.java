@@ -353,6 +353,20 @@ public class PersianDate {
         return today;
     }
 
+    public boolean equals(PersianDate rhs) {
+        if (this.getDay() == rhs.getDay() &
+                this.getYear() == rhs.getYear() &
+                this.getMonth() == rhs.getMonth()){
+            return true;
+        }
+        return false;
+    }
+    public PersianDate(int y, int m,int d){
+        this.setDay(d);
+        this.setYear(y);
+        this.setMonth(m);
+    }
+
     // data members
     private int year;
     private int month;
