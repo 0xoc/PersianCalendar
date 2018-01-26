@@ -5,8 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.operatoroverloading.persiancalendar.DayView">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateText">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="year"
+        android:id="@+id/day_year"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MONTH"
+            android:id="@+id/day_month"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DAY"
+            android:id="@+id/day_day"
+            />
+
+    </LinearLayout>
     <ListView
+        android:layout_below="@id/dateText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/dayTimes"

@@ -58,22 +58,31 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        final int actual_position = position - startDay;
         // ignore days that are not
         if(position < startDay) {
             holder.title.setBackgroundColor(0);
+            holder.title.setText("");
         }
         // color out the current day
-        else if (Integer.parseInt(daysToPrint[position]) == today.getDay() & data[0].getMonth() == today.getMonth() &  data[0].getYear() == today.getYear())
+        else if (data[actual_position].getDay() == today.getDay() & data[actual_position].getMonth() == today.getMonth() &  data[actual_position].getYear() == today.getYear()) {
             holder.title.setBackground(context.getResources().getDrawable(R.drawable.current_day));
-        else if ((position - startDay + 1) < data.length) {
-            if (data[(position - startDay + 1)].getDayOfWeek() == 7)
-                holder.title.setBackground(context.getResources().getDrawable(R.drawable.round_item_holyday));
+            holder.title.setText(data[actual_position].getDay() + "");
         }
-        holder.title.setText(daysToPrint[position]);
+        else if ((position - startDay) < data.length) {
+            holder.title.setText(data[actual_position].getDay() + "");
+            if (data[actual_position].getDayOfWeek() == 6) {
+                holder.title.setBackground(context.getResources().getDrawable(R.drawable.round_item_holyday));
+            }
+        }
+
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,DayView.class);
+                intent.putExtra("YEAR",data[actual_position].getYear());
+                intent.putExtra("MONTH",data[actual_position].getMonth());
+                intent.putExtra("DAY",data[actual_position].getDay());
                 context.startActivity(intent);
             }
         });

@@ -30,7 +30,6 @@ public class Home extends Activity {
 
     private void gotoCalendarActivity(){
         Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("NAME","hello");
         startActivity(intent);
     }
 }
