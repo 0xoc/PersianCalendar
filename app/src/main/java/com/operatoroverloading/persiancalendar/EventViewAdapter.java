@@ -38,6 +38,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.View
         holder.description.setText(events.get(position).getDescription());
         holder.time.setText(events.get(position).getHour() + ":" + events.get(position).getMin());
         holder.type.setText(events.get(position).getType().getEventTitle());
+        holder.location.setText(events.get(position).getLocation());
     }
 
     @Override
@@ -48,6 +49,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public TextView description;
+        public TextView location;
         public TextView type;
         public TextView time;
 
@@ -57,6 +59,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.View
             this.description = itemView.findViewById(R.id.viewEventDescription);
             this.type = itemView.findViewById(R.id.viewEventType);
             this.time = itemView.findViewById(R.id.viewEventTime);
+            this.location = itemView.findViewById(R.id.viewEventLocation);
         }
     }
 }

@@ -53,6 +53,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="شیراز"
+            android:id="@+id/viewEventLocation"
             android:background="@drawable/round_item_time"
             android:backgroundTint="#454545"
             android:textColor="#fff"

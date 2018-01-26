@@ -1,5 +1,6 @@
 package com.operatoroverloading.persiancalendar;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -106,9 +107,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         day6.setTypeface(tf);
 
 
-
+        Event event = new Event("تیتر رویداد","توضیحات","hi",new PersianDate(),12,45,new EventType("همورک"));
     }
-    Event event = new Event("تیتر رویداد","توضیحات","شیراز",new PersianDate(),12,45,new EventType("همورک"));
+
+
+
     public static void setYear (int year) {
         monthViewAdapter.year = year;
         pager.setAdapter(monthViewAdapter);

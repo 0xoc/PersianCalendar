@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Home"
+            android:name=".MainActivity"
             android:label="تقویم فارسی"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ConvertDateTest" />
-        <activity android:name=".MainActivity" />
+
         <activity android:name=".DayView" />
         <activity android:name=".DayEventView"></activity>
     </application>
