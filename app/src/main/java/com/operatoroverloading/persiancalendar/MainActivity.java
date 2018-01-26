@@ -36,6 +36,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import CalendarCore.EventCore.Event;
+import CalendarCore.EventCore.EventType;
 import SinaPersianCalendar.PersianDate;
 import SinaPersianCalendar.PersianMonth;
 
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
-
+    Event event = new Event("تیتر رویداد","توضیحات","شیراز",new PersianDate(),12,45,new EventType("همورک"));
     public static void setYear (int year) {
         monthViewAdapter.year = year;
         pager.setAdapter(monthViewAdapter);

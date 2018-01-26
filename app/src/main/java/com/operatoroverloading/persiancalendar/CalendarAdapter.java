@@ -86,6 +86,17 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
                 context.startActivity(intent);
             }
         });
+        holder.title.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(context,DayEventView.class);
+                intent.putExtra("DAY",data[actual_position].getDay());
+                intent.putExtra("MONTH", data[actual_position].getMonth());
+                intent.putExtra("YEAR",data[actual_position].getYear());
+                context.startActivity(intent);
+                return true;
+            }
+        });
     }
 
     @Override

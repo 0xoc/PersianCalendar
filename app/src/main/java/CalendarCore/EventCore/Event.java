@@ -14,7 +14,6 @@ import SinaPersianCalendar.PersianDate;
 
 public class Event {
     public static ArrayList<Event> events = new ArrayList<>();
-
     private String title;
     private String description;
     private String location;
@@ -94,5 +93,21 @@ public class Event {
 
     public void setType(EventType type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

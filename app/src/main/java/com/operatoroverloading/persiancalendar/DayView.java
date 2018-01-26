@@ -58,7 +58,9 @@ public class DayView extends AppCompatActivity {
         EventType b = new EventType("همورک");
         final int eventCount = EventType.events.size();
 
-        String types[] = new String[eventCount + 1];
+
+        String types[] = null;
+        types = new String[eventCount + 1];
 
         for (int i = 0; i < eventCount;i++){
             types[i] = EventType.events.get(i).getEventTitle();
@@ -116,12 +118,9 @@ public class DayView extends AppCompatActivity {
                 int hour = pickHour.getValue();
                 int min = pickMin.getValue();
 
-                EventType type = EventType.events.get(eventType.getSelectedItemPosition());
-
-
-                Event newEvent = new Event(eventTitle.toString(),eventDescription.toString(),
-                        eventLocation.toString(),eventDate,hour,min,type);
-
+                Event newEvent = new Event(eventTitle.getText().toString(),eventDescription.getText().toString(),
+                        eventLocation.getText().toString(),eventDate,hour,min,EventType.events.get(eventType.getSelectedItemPosition()));
+                Toast.makeText(getApplicationContext(),"New Event added",Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    android:orientation="vertical"
+    android:background="@drawable/round_item_time"
+    android:backgroundTint="#828284"
+    >
+<TextView
+    android:id="@+id/viewEventTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="#fff"
+    android:gravity="center"
+    android:text="تیتر رویداد"
+    android:textSize="25sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="توضیحات رویداد این تاریخ در این مکان"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:id="@+id/viewEventDescription"
+        android:layout_below="@+id/viewEventTitle"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/viewEventType"
+        android:layout_weight="1"
+        android:text="قرار ملاقات"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:background="@drawable/round_item_time"
+        android:backgroundTint="@color/colorAccent"
+        android:padding="5dp"
+        android:textSize="14sp"
+        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="شیراز"
+            android:background="@drawable/round_item_time"
+            android:backgroundTint="#454545"
+            android:textColor="#fff"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_item_time"
+        android:backgroundTint="#454545"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:id="@+id/viewEventTime"
+        android:text="12:24"
+        android:textColor="#fff"
+        android:backgroundTint="#626267"
+        android:background="@drawable/left_field"
+        android:textSize="14sp"
+        android:gravity="center"
+        />
+        <TextView
+            android:layout_width="0dp"
+            android:text="زمان :"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#fff"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"/>
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
