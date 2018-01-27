@@ -20,9 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ConvertDateTest" />
-
         <activity android:name=".DayView" />
-        <activity android:name=".DayEventView"></activity>
+        <activity android:name=".DayEventView" />
+        <activity android:name=".ViewAllEvents"></activity>
     </application>
 
 </manifest>

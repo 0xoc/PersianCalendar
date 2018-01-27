@@ -1,6 +1,7 @@
 package com.operatoroverloading.persiancalendar;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,15 @@ import CalendarCore.EventCore.Event;
  */
 
 public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.ViewHolder> {
+    private Context context;
     private ArrayList<Event> events;
     private LayoutInflater inflater;
+    private boolean showDate;
 
-
-    public EventViewAdapter (Context context,ArrayList<Event> events) {
+    public EventViewAdapter (Context context,ArrayList<Event> events,boolean showDate) {
         this.events = events;
+        this.showDate = showDate;
+        this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
@@ -39,6 +43,22 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.View
         holder.time.setText(events.get(position).getHour() + ":" + events.get(position).getMin());
         holder.type.setText(events.get(position).getType().getEventTitle());
         holder.location.setText(events.get(position).getLocation());
+
+
+        // change date font
+        Typeface tf = Typeface.createFromAsset(context.getResources().getAssets(),"mt.ttf");
+        holder.date.setTypeface(tf);
+
+        // get the event date and make a string out of it
+        if (showDate){
+            String dateString = events.get(position).getDate().getYear() + "/" +
+                                events.get(position).getDate().getMonth() + "/" +
+                                events.get(position).getDate().getDay();
+            holder.date.setText(dateString);
+        } else {
+            holder.date.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -52,7 +72,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.View
         public TextView location;
         public TextView type;
         public TextView time;
-
+        public TextView date;
         public ViewHolder(View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.viewEventTitle);
@@ -60,6 +80,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.View
             this.type = itemView.findViewById(R.id.viewEventType);
             this.time = itemView.findViewById(R.id.viewEventTime);
             this.location = itemView.findViewById(R.id.viewEventLocation);
+            this.date = itemView.findViewById(R.id.viewEventDate);
         }
     }
 }

@@ -2,11 +2,13 @@ package com.operatoroverloading.persiancalendar;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
@@ -53,26 +55,55 @@ public class DayView extends AppCompatActivity {
 
         final Spinner eventType = (Spinner) findViewById(R.id.spEventType);
 
-        EventType n = new EventType("تایم کلاس ها");
-        EventType a = new EventType("قرار ملاقات");
-        EventType b = new EventType("همورک");
+
         final int eventCount = EventType.events.size();
 
 
-        String types[] = null;
-        types = new String[eventCount + 1];
-
-        for (int i = 0; i < eventCount;i++){
-            types[i] = EventType.events.get(i).getEventTitle();
-        }
+        String types[];
+        types = getEventList(eventCount);
         types[eventCount] = "اضافه کردن نوع جدید...";
 
+        // create the spinner adapter
+        ArrayAdapter<String> eventTypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,types);
+        eventTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // add a new event type
         eventType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int current = adapterView.getSelectedItemPosition();
-                if (current == eventCount)
-                    Toast.makeText(getApplicationContext(),"todo: add new event in dialog",Toast.LENGTH_SHORT).show();
+                if (current == eventCount){
+
+                    // create a dialog box builder
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DayView.this);
+                    View newEventTypeView = getLayoutInflater().inflate(R.layout.new_event_type,null);
+
+                    // get dialog elements
+                    final TextView newEventTitle =  newEventTypeView.findViewById(R.id.newEventTypeTitle);
+                    Button addNewEventType = newEventTypeView.findViewById(R.id.addNewEventTypeBtn);
+
+                    // create a dialog from dialog builder
+                    builder.setView(newEventTypeView);
+                    final AlertDialog dialog = builder.create();
+
+                    // register the new event type
+                    addNewEventType.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String eventTypeTitle = newEventTitle.getText().toString();
+                            EventType tmp = new EventType(eventTypeTitle);
+                            Toast.makeText(getApplicationContext(),"نوع رویداد جدید اضافه شد",Toast.LENGTH_SHORT).show();
+
+                            // todo: update spinner
+
+                            // hide the dialog
+                            dialog.hide();
+                        }
+                    });
+
+                    dialog.show();
+                }
+
             }
 
             @Override
@@ -80,8 +111,7 @@ public class DayView extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> eventTypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,types);
-        eventTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // set spinner adapter
         eventType.setAdapter(eventTypeAdapter);
 
 
@@ -124,5 +154,13 @@ public class DayView extends AppCompatActivity {
             }
         });
 
+    }
+
+    public String [] getEventList (int eventCount) {
+        String types[] = new String[eventCount + 1];
+        for (int i = 0; i < eventCount;i++){
+            types[i] = EventType.events.get(i).getEventTitle();
+        }
+        return types;
     }
 }

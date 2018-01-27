@@ -1,5 +1,6 @@
 package SinaPersianCalendar;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.lang.StringBuilder;
 import java.lang.String;
@@ -9,7 +10,7 @@ import java.lang.String;
  */
 
 
-public class PersianDate {
+public class PersianDate implements Serializable{
     // constructors
 
     // constructs the object with todays date

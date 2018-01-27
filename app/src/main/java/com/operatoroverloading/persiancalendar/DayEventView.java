@@ -26,6 +26,8 @@ public class DayEventView extends AppCompatActivity {
         // change toolbar font
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),"mt.ttf");
         TextView title = (TextView) findViewById(R.id.txtViewEvent);
+
+
         title.setTypeface(tf);
         day.setTypeface(tf);
         month.setTypeface(tf);
@@ -47,7 +49,7 @@ public class DayEventView extends AppCompatActivity {
         RecyclerView eventsView = (RecyclerView) findViewById(R.id.rc_event_view);
         ArrayList<Event> thisDateEvents = Event.getEventsAt(new PersianDate(y,m,d));
 
-        EventViewAdapter adapter = new EventViewAdapter(this,thisDateEvents);
+        EventViewAdapter adapter = new EventViewAdapter(this,thisDateEvents,false);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         eventsView.setAdapter(adapter);
         eventsView.setLayoutManager(layoutManager);

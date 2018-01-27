@@ -18,7 +18,9 @@ public class MonthViewAdapter extends FragmentStatePagerAdapter{
     public MonthViewAdapter(FragmentManager fm) {
         super(fm);
     }
+
     public int getYear () {return this.year;}
+
     @Override
     public Fragment getItem(int position) {
         MonthViewFragment month = new MonthViewFragment(year,position + 1,PersianDate.monthIntToString(position));
