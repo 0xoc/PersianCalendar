@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+// is never used in the app
 public class ConvertDateTest extends AppCompatActivity {
 
     @Override

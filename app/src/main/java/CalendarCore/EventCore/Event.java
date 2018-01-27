@@ -22,6 +22,8 @@ import SinaPersianCalendar.PersianDate;
 
 public class Event implements Serializable,Comparable{
     public static ArrayList<Event> events = new ArrayList<>();
+    public static int c = 0;    // used to create a unique id
+
     private String title;
     private String description;
     private String location;
@@ -31,6 +33,7 @@ public class Event implements Serializable,Comparable{
 
     private EventType type;
 
+    int eventId;
 
     // get all the events of a date
     public static ArrayList<Event> getEventsAt(PersianDate date) {
@@ -52,13 +55,25 @@ public class Event implements Serializable,Comparable{
         this.hour = hour;
         this.min = min;
         this.type = type;
+        c++;                // add one to count
+        this.eventId = c;
         events.add(this);
     }
 
+    // get event index by id
+    public static int getIndexById(int id) {
+        for (int i = 0 ; i < events.size(); i ++){
+            if (events.get(i).getId() == id){
+                return i;
+            }
+        }
+        return -1;  // if not found
+    }
     public ArrayList<Event> getEvents() {
         return events;
     }
 
+    public int getId() {return this.eventId;}
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }

@@ -19,7 +19,7 @@ public class ViewAllEvents extends AppCompatActivity {
         // get the recycler view for all events
         RecyclerView allEvents = (RecyclerView) findViewById(R.id.rcAllEvents);
 
-        // sort events base on their date and time
+        // sort events based on their date and time
         Collections.sort(Event.events);
 
         // create a new adapter

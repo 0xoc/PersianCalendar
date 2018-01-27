@@ -29,11 +29,15 @@ public class DayView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_view);
-        ArrayList<String> time = new ArrayList<>();
+
+
+        // year, month and day will be received through intent extras
+        // -1 mean not "initialized"
         int y = -1;
         int m = -1;
         int d = -1;
 
+        // get intent and extract it's data
         Intent intent = getIntent();
         if (intent != null) {
             y = (int) intent.getExtras().get("YEAR");
@@ -41,11 +45,38 @@ public class DayView extends AppCompatActivity {
             d = (int) intent.getExtras().get("DAY");
         }
 
+        // get a handle of all the TextViews in the layout
         TextView year = (TextView) findViewById(R.id.day_year);
         TextView month = (TextView) findViewById(R.id.day_month);
         TextView day = (TextView) findViewById(R.id.day_day);
         TextView setupEvent = (TextView) findViewById(R.id.txtSetupEvent);
 
+        // get a handle of other input types
+        // they are declared final because they are used from inner bocks later on
+        final Spinner eventType = (Spinner) findViewById(R.id.spEventType);
+        final NumberPicker pickHour = (NumberPicker) findViewById(R.id.timeHour);
+        final NumberPicker pickMin = (NumberPicker) findViewById(R.id.timeMinute);
+
+        // set number picker properties
+        pickHour.setMaxValue(24);
+        pickHour.setMinValue(1);
+
+        pickMin.setMinValue(0);
+        pickMin.setMaxValue(59);
+
+        pickHour.setWrapSelectorWheel(true);
+        pickMin.setWrapSelectorWheel(true);
+
+
+        // register new font
+        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),"mt.ttf");
+
+        // set new font for year, month and day
+        year.setTypeface(tf);
+        month.setTypeface(tf);
+        day.setTypeface(tf);
+
+        // set the received date info
         if (y != -1)
             year.setText(y + "");
         if (m != -1)
@@ -53,15 +84,10 @@ public class DayView extends AppCompatActivity {
         if (d != -1)
             day.setText(d + "");
 
-        final Spinner eventType = (Spinner) findViewById(R.id.spEventType);
-
-
+        // get a list of all event types so far
         final int eventCount = EventType.events.size();
+        String types[] = getEventList(eventCount);          // getEventList returns an array of size (eventCount + 1)
 
-
-        String types[];
-        types = getEventList(eventCount);
-        types[eventCount] = "اضافه کردن نوع جدید...";
 
         // create the spinner adapter
         ArrayAdapter<String> eventTypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,types);
@@ -94,7 +120,12 @@ public class DayView extends AppCompatActivity {
                             EventType tmp = new EventType(eventTypeTitle);
                             Toast.makeText(getApplicationContext(),"نوع رویداد جدید اضافه شد",Toast.LENGTH_SHORT).show();
 
-                            // todo: update spinner
+                            // update spinner with new data
+                            int newSize = EventType.events.size();
+                            String newData[] = getEventList(newSize);
+                            ArrayAdapter<String> newAdapter = new ArrayAdapter<String>(DayView.this,android.R.layout.simple_spinner_dropdown_item,newData);
+                            eventType.setAdapter(newAdapter);
+
 
                             // hide the dialog
                             dialog.hide();
@@ -115,22 +146,6 @@ public class DayView extends AppCompatActivity {
         eventType.setAdapter(eventTypeAdapter);
 
 
-        final NumberPicker pickHour = (NumberPicker) findViewById(R.id.timeHour);
-        final NumberPicker pickMin = (NumberPicker) findViewById(R.id.timeMinute);
-
-        pickHour.setMaxValue(24);
-        pickHour.setMinValue(1);
-
-        pickMin.setMinValue(0);
-        pickMin.setMaxValue(59);
-
-        pickHour.setWrapSelectorWheel(true);
-        pickMin.setWrapSelectorWheel(true);
-
-        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),"mt.ttf");
-        year.setTypeface(tf);
-        month.setTypeface(tf);
-        day.setTypeface(tf);
         setupEvent.setTypeface(tf);
         ImageButton addEventBtn = (ImageButton) findViewById(R.id.addEventBtn);
 
@@ -161,6 +176,7 @@ public class DayView extends AppCompatActivity {
         for (int i = 0; i < eventCount;i++){
             types[i] = EventType.events.get(i).getEventTitle();
         }
+        types[eventCount] = "اضافه کردن نوع جدید...";       // to allow the user to create a new event type
         return types;
     }
 }

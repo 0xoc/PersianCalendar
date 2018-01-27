@@ -17,26 +17,26 @@ import static android.R.color.holo_blue_bright;
 
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyViewHolder>  {
-    PersianDate data[];
-    private PersianDate today;
-    private LayoutInflater inflater;
-    private Context context;
-    private String daysToPrint[];
-    private int startDay;
+    PersianDate data[];                     // days of a month to be displayed
+    private PersianDate today;              // today's date
+    private LayoutInflater inflater;        // to create a view from layout
+    private Context context;                // the context to show the data in
+    private String daysToPrint[];           // a tmp array of all  "data" used to adjust start position
+    private int startDay;                   // starting day of a month
 
     public CalendarAdapter(Context context, PersianDate[] data,PersianDate today) {
         this.context = context;
         this.today = today;
         inflater = LayoutInflater.from(context);
         this.data = data;
+
+        // set the start day
         int initDay = data[0].getDayOfWeek();
         if (initDay == 7)
             initDay = 0;
         startDay = initDay;
 
         daysToPrint = new String[data.length+initDay];
-
-        // days of the week
 
 
         for(int i = 0;i<initDay;i++){
@@ -59,7 +59,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final int actual_position = position - startDay;
-        // ignore days that are not
+
+        // ignore week days before the first day of the month
         if(position < startDay) {
             holder.title.setBackgroundColor(0);
             holder.title.setText("");
@@ -69,6 +70,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
             holder.title.setBackground(context.getResources().getDrawable(R.drawable.current_day));
             holder.title.setText(data[actual_position].getDay() + "");
         }
+        // color fridays
         else if ((position - startDay) < data.length) {
             holder.title.setText(data[actual_position].getDay() + "");
             if (data[actual_position].getDayOfWeek() == 6) {
@@ -76,9 +78,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
             }
         }
 
+        // setup click listener on all days
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // send date info to DayView Activity for setting up an event for this date
                 Intent intent = new Intent(context,DayView.class);
                 intent.putExtra("YEAR",data[actual_position].getYear());
                 intent.putExtra("MONTH",data[actual_position].getMonth());
@@ -86,9 +91,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
                 context.startActivity(intent);
             }
         });
+
+
         holder.title.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                // send date info to DayEventView activity to show events for that date
                 Intent intent = new Intent(context,DayEventView.class);
                 intent.putExtra("DAY",data[actual_position].getDay());
                 intent.putExtra("MONTH", data[actual_position].getMonth());
