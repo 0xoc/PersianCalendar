@@ -4,7 +4,7 @@ public class Roozh {
 
     private int day, month, year;
 
-    private int jY, jM, jD;
+    public int jY, jM, jD;
 
     public int gY, gM, gD;
 

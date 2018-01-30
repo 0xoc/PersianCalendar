@@ -51,12 +51,17 @@ import SinaPersianCalendar.PersianMonth;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static MonthViewAdapter monthViewAdapter;
     private static ViewPager pager;
+    private final PersianDate today = new PersianDate();                                // today
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
+         adding side nav drawer to the app
+        * */
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -75,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        final PersianDate today = new PersianDate();
         pager = (ViewPager) findViewById(R.id.pager);
         monthViewAdapter = new MonthViewAdapter(getSupportFragmentManager());
         pager.setAdapter(monthViewAdapter);
@@ -118,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView day5 = (TextView) findViewById(R.id.day5text);
         TextView day6 = (TextView) findViewById(R.id.day6text);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(),"mt.ttf");
+        /*Typeface tf = Typeface.createFromAsset(getAssets(),"mt.ttf");
         day0.setTypeface(tf);
         day1.setTypeface(tf);
         day2.setTypeface(tf);
@@ -126,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         day4.setTypeface(tf);
         day5.setTypeface(tf);
         day6.setTypeface(tf);
-
+*/
         // load data
         loadEventTypeData(this);
         loadEventData(this);
@@ -236,7 +240,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_date_convert) {
-            // Handle the camera action
+            Intent intent = new Intent(MainActivity.this,DateConverter.class);
+            startActivity(intent);
         } else if (id == R.id.nav_events){
             Intent intent = new Intent(MainActivity.this,ViewAllEvents.class);
             startActivity(intent);

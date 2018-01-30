@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.operatoroverloading.persiancalendar.DateConverter"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="تبدیل تاریخ"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/dateYear"
+            android:hint="سال"/>
+        <EditText
+            android:layout_weight="1"
+            android:id="@+id/dateMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="ماه"/>
+        <EditText
+            android:id="@+id/dateDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="روز"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="شمسی به میلادی"
+            android:layout_weight="1"
+            android:gravity="center"/>
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textOn="Persian"
+            android:textOff="G"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="میلادی به شمسی"
+            android:layout_weight="1"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dateResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="نتیجه تبدیل"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="تبدیل تاریخ"/>
+
+</LinearLayout>
